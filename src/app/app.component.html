@@ -1,8 +1,12 @@
-<app-profesor> </app-profesor>
+<!-- <app-fruta></app-fruta>
+<app-profesor> </app-profesor> -->
 
-<app-profesor> </app-profesor>
-
-<app-profesor> </app-profesor>
-
-<app-profesor> </app-profesor>
-
+<!-- menu en html5 -->
+<hr>
+    <nav>
+        <a [routerLink]="[ '/fruta' ]" routerLinkActive="active"> Fruta </a>
+        <a [routerLink]="[ '/profesor' ]" routerLinkActive= "active"> Profesor </a>
+        <a [routerLink]="[ '/dibujo' ]" routerLinkActive = "active"> Dibujo </a>
+    </nav>
+<hr> 
+<router-outlet></router-outlet>
