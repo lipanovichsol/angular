@@ -7,6 +7,7 @@ import { FrutaComponent } from './fruta/fruta.component';
 import { FormsModule } from '@angular/forms'; //elementos de formulario
 import { routing , appRoutingProviders } from './app.routing'; //routeado
 import { DibujoComponent } from './dibujo/dibujo.component'; 
+import {HttpClientModule} from '@angular/common/http'; //para usar peticiones http
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { DibujoComponent } from './dibujo/dibujo.component';
   imports: [
     BrowserModule,
     FormsModule,
-    routing
+    routing,
+    HttpClientModule
   ],
   providers: [
     appRoutingProviders],

@@ -1,8 +1,12 @@
 import {Component} from '@angular/core'; 
 import {Profesor} from './profesor'; 
+import {PeticionesServices} from '../app/services/peticiones.services';
+
+
 @Component({
     selector: 'app-profesor',
-    templateUrl: './profesor.component.html'
+    templateUrl: './profesor.component.html', 
+    providers: [PeticionesServices]
 })
 
 export class ProfesorComponent{
@@ -14,8 +18,11 @@ export class ProfesorComponent{
     public profesorado: Array<Profesor>;
     public colorAEvaluar: string;
     public admin: boolean; 
+    public apiPosts;
 
-    constructor(){ //todo lo que escribo en el constructor se ejecuta primero cuando cargo un componente
+    constructor(
+        private _peticionesService: PeticionesServices      //el servicio se pasa por parametro, para que el componente tenga disponible el servicio. 
+    ){ //todo lo que escribo en el constructor se ejecuta primero cuando cargo un componente
         this.nombre='Profe';
         this.edad= 23;
         this.casado=true;
@@ -34,7 +41,18 @@ export class ProfesorComponent{
     ngOnInit(): void {
         //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
         //Add 'implements OnInit' to the class.
-        console.log(this.profesor);
+        // console.log(this.profesor);
+        // console.log(this._peticionesService.getPrueba());
+        this._peticionesService.getPosts().subscribe(
+            res => {
+                this.apiPosts=res;
+                if(!this.apiPosts)
+                console.log("Respuesta vacia de la API");
+            }, 
+            error => {   //solo va a aparecer si la rta http no es 200-OK
+                console.log(<any>error);
+            }
+        );
     }
 
     pulsarBoton(){

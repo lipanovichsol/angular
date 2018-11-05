@@ -65,3 +65,11 @@
         <strong> No eres el administrador. </strong>
     </div>
 </ng-template>
+
+<h2>Respuesta de la API</h2>
+ <ul *ngIf="apiPosts"> <!--solo creo el UL si la variable existe -->
+    <li *ngFor="let post of apiPosts">
+        {{post.id}} . {{post.title}}
+    </li>
+</ul>
+<span *ngIf="!apiPosts"> Cargando Listado ... </span> <!--cuando la variable todavia no existe, muestra esto-->
