@@ -1,0 +1,14 @@
+
+<h2>FORMULARIO DE VERDURAS</h2>
+
+<textarea>esto es una prueba</textarea>
+<form #formVerduras="ngForm" id="formVerduras" (ngSubmit)="guardarForm();"> <!--cuando hagamos un submit del formulario se dispara la llamada a la funcion -->
+  <input type="text" placeholder="{{formNombre}}"  name="nombre" [(ngModel)]="verdura.nombre" required pattern="[a-zA-Z]+"><br>
+  <span *ngIf="verdura.nombre.touched && !verdura.nombre.valid"> Nombre incorrecto </span>
+  <label>{{formPrecio}}</label>
+  <input type="number" name="precio" [(ngModel)]="verdura.precio"><br> <!--es importante que el nombre del NAME sea igual al que puse en el modelo (verdura.ts)-->
+  <textarea placeholder="{{formDescripcion}}" name="descripcion" [(ngModel)]="verdura.descripcion"></textarea>
+  <input type="submit" value="{{formGuardar}}" [disabled]="!formVerduras.form.valid">
+</form>
+
+<button (click)="redirigir()"> Redirigir </button>

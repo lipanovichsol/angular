@@ -1,0 +1,75 @@
+<h1>Componente Profesor</h1>
+<p>Nombre: {{nombre}}</p>
+<p>Edad: {{edad}}</p>
+<p>Trabajos: {{trabajos}}</p>
+<div *ngIf="casado; else elseSoltero">
+    <p> Estado Civil: Casado. </p>
+</div>
+<ng-template #elseSoltero>
+    Estado Civil: Soltero.
+</ng-template>
+
+<div>
+    <ul>
+        <li *ngFor="let trabajo of trabajos; let i = index">
+         {{i+1}} . {{trabajo}}
+        </li>
+    </ul>
+</div>
+
+<h2> Listado de Profesores </h2>
+<ul>
+    <li *ngFor="let i of profesorado, let x = index">
+        <strong> Profesor {{ x + 1 }}</strong>
+        <ul>
+                <li> {{i.nombre}} </li>
+                <li> {{i.edad}} </li>
+                <li> {{i.materia}} </li>
+                <li *ngIf="i.contratado"> Contratado </li>
+                <li *ngIf="!i.contratado"> NO Contratado </li>
+        </ul>
+    </li>
+</ul>
+<h2> Profesor Unico </h2>
+<ul>
+    <li> {{profesor.nombre}} </li>
+    <li> {{profesor.edad}} </li>
+    <li> {{profesor.materia}} </li>
+    <li *ngIf="profesor.contratado"> Contratado </li>
+    <li *ngIf="!profesor.contratado"> NO Contratado </li>
+</ul>
+
+<h2> Switch - Case </h2>
+<ul [ngSwitch]="colorAEvaluar">
+    <p *ngSwitchCase="'blue'" [ngStyle]="{'color': colorAEvaluar }">
+        El color es azul.
+    </p>
+    <p *ngSwitchCase="'red'" [ngStyle]="{'color': colorAEvaluar }">
+        El color es rojo.
+    </p>
+    <p *ngSwitchDefault [ngStyle]="{'color': colorAEvaluar }">
+        El color no es rojo ni azul.
+    </p>
+</ul>
+
+<h2> Evento Click </h2>
+<button (click)="pulsarBoton()"> Cambiar a administrador / No administrador </button>
+<div *ngIf="admin; else noAdmin">
+    <strong>
+        Eres el administrador.
+    </strong>
+</div>
+
+<ng-template #noAdmin> 
+    <div>
+        <strong> No eres el administrador. </strong>
+    </div>
+</ng-template>
+
+<h2>Respuesta de la API</h2>
+ <ul *ngIf="apiPosts"> <!--solo creo el UL si la variable existe -->
+    <li *ngFor="let post of apiPosts">
+        {{post.title}} . {{post.description}}
+    </li>
+</ul>
+<span *ngIf="!apiPosts"> Cargando Listado ... </span> <!--cuando la variable todavia no existe, muestra esto-->
